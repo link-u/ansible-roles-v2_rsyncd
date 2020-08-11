@@ -1,0 +1,17 @@
+### Global options ##############################################################################
+uid = {{ rsyncd_global_uid }}
+gid = {{ rsyncd_global_gid }}
+read only = {{ 'yes' if rsyncd_global_read_only else 'no' }}
+log file = {{ rsyncd_global_log_file }}
+pid file = {{ rsyncd_global_pid_file }}
+reverse lookup = {{ 'yes' if rsyncd_global_reverse_lookup else 'no' }}
+
+### Module options ##############################################################################
+{% for section in rsyncd_sections %}
+[{{ section.name }}]
+path = {{ section.path }}
+hosts allow = {{ section.hosts_allow }}
+hosts deny = {{ section.hosts_deny | default('*') }}
+read only = {{ 'true' if section.read_only | default(false) else 'false' }}
+
+{% endfor %}

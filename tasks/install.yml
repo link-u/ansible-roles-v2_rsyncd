@@ -1,0 +1,9 @@
+---
+# tasks/install.yml (rsyncd)
+# Prefix : rsyncd
+
+- name: Install rsync
+  apt:
+    name: rsync
+    update_cache: yes
+  tags: rsyncd
