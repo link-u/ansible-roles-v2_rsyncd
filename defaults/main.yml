@@ -1,20 +1,7 @@
-# rsyncd
+---
+# defaults/main.yml (rsyncd)
+# Prefix : rsyncd
 
-## 概要
-
-rsyncd のインストール, 設定を行う.
-
-## 動作確認バージョン
-
-- Ubuntu 18.04 (bionic)
-- ansible >= 2.8
-- Jinja2 2.10.3
-
-## 使い方 (ansible)
-
-### Role variables
-
-```yaml
 ### インストール設定 ###############################################################################
 ## 基本設定
 rsyncd_install_flag: True  # インストールフラグ
@@ -38,27 +25,3 @@ rsyncd_sections: []
 #    hosts_allow: 192.0.2.0/24
 #    hosts_deny: "*"
 #    read_only: false
-```
-
-### Example playbook
-
-```yaml
-- hosts:
-    - servers
-  roles:
-    - { role: rsyncd, tags: ["rsyncd"] }
-```
-
-## 後方互換性について
-
-### 削除された変数の一覧
-
-以下の変数は `group_vars` から削除して頂いて大丈夫です.
-
-* `rsyncd_ufw_enabled` と `rsyncd_ufw_allow_from`
-  * ufw の設定に関する項目であり, それらは ufw role で実行する方針に切り替えたため削除しました.
-
-
-## Licence
-
-MIT

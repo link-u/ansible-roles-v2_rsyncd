@@ -1,0 +1,20 @@
+---
+# tasks/pre_check.yml (rsyncd)
+# Prefix : rsyncd
+
+- name: Check for deleted variables
+  shell: >-
+    echo "[WARNING]: 以下の変数は削除されました. 以下の URL を確認してください. @y_hashida";
+    echo "    https://github.com/link-u/ansible-roles-v2_rsyncd/blob/master/README.md#削除された変数の一覧";
+    {% if rsyncd_ufw_enabled  is defined %}
+      echo "rsyncd_ufw_enabled ";
+    {% endif %}
+
+    {% if rsyncd_ufw_allow_from is defined %}
+      echo "rsyncd_ufw_allow_from";
+    {% endif %}
+  register: __rsyncd_check_deleted_vars
+  check_mode: no
+  changed_when:
+    - (__rsyncd_check_deleted_vars.stdout_lines | length) != 2
+  notify: "Print warning for rsyncd (Check for deleted variables)"

@@ -1,0 +1,19 @@
+---
+# tasks/configure.yml (rsyncd)
+# Prefix : rsyncd
+
+- name: Set rsyncd config
+  template:
+    src: "rsyncd.conf.j2"
+    dest: "/etc/rsyncd.conf"
+    mode: "0644"
+  notify: Restart rsyncd
+  tags: rsyncd
+
+- name: Start rsyncd
+  become: yes
+  systemd:
+    name: rsync.service
+    state: started
+    enabled: yes
+  tags: rsyncd
