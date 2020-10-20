@@ -1,5 +1,7 @@
 # rsyncd
 
+![ansible ci](https://github.com/link-u/ansible-roles-v2_rsyncd/workflows/ansible%20ci/badge.svg)
+
 ## 概要
 
 rsyncd のインストール, 設定を行う.
